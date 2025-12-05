@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #ada7b7; /* soft pastel cream */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        img {
+            width: 200px;
+            margin-top: 15px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        }
+        a.button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        a.button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if data == 0 %}
+            <h1>iris_section</h1>
+        {% else %}
+            <h1>Prediction: {{ species }}</h1>
+            <p>Confidence: {{ confidence }}</p>
+            <!-- Flower image based on predicted species -->
+            <img src="{{ url_for('static', filename=species.lower() + '.png') }}" alt="{{ species }}">
+        {% endif %}
+
+        <a href="{{ url_for('home') }}" class="button">🔙 Go Back Home</a>
+    </div>
+</body>
+</html>
